@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "marques-domain",
   "private": true,
   "scripts": {
     "build": "turbo run build",
