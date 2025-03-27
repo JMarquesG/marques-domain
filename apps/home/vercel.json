@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/docs/",
+      "destination": "https://marques-domain-docs.vercel.app/docs/"
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "https://marques-domain-docs.vercel.app/docs/:path*"
+    }
+  ]
+}
