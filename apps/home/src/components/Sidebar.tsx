@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             <li><a href="#about" className="sidebar-link">About</a></li>
             <li><a href="#experience" className="sidebar-link">Experience</a></li>
             <li><a href="#expertise" className="sidebar-link">Expertise</a></li>
-            <li><a href="#education" className="sidebar-link">Education</a></li>
+            <li><a href="#projects" className="sidebar-link">Projects</a></li>
             <li><a href="#contact" className="sidebar-link">Contact</a></li>
           </ul>
         </nav>

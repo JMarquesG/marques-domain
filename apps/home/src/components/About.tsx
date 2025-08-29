@@ -31,7 +31,7 @@ const About: React.FC = () => {
                   </li>
                   <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('phone')}:</span>
-                    <span>648777122</span>
+                    <span>+34 638772122</span>
                   </li>
                   <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('email')}:</span>
@@ -39,7 +39,7 @@ const About: React.FC = () => {
                   </li>
                   <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('location')}:</span>
-                    <span>Barcelona, Spain</span>
+                    <span>Andorra</span>
                   </li>
                 </ul>
               </div>
@@ -80,6 +80,26 @@ const About: React.FC = () => {
                   <div>
                     <div className="flex justify-between mb-2">
                       <span>{t('technicalLeadership')}</span>
+                      <span className="text-primary">80%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" style={{ width: '80%' }}></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-2">
+                      <span>{t('aiNlp')}</span>
+                      <span className="text-primary">85%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div className="skill-progress" style={{ width: '85%' }}></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-2">
+                      <span>{t('blockchain')}</span>
                       <span className="text-primary">80%</span>
                     </div>
                     <div className="skill-bar">

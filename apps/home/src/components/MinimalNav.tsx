@@ -27,7 +27,7 @@ const MinimalNav: React.FC = () => {
     { href: "#about", label: t('about') },
     { href: "#experience", label: t('experience') },
     { href: "#expertise", label: t('expertise') },
-    { href: "#education", label: t('education') },
+    { href: "#projects", label: t('projects') },
     { href: "#contact", label: t('contact') }
   ];
 

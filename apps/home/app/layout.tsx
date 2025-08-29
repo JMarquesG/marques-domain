@@ -1,29 +1,26 @@
-import React from 'react'
-import '../src/index.css'
-import type { Metadata, Viewport } from 'next'
+import "../src/index.css";
+import React from "react";
+import { LanguageProvider } from "@/context/LanguageContext";
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1.0,
-}
-
-export const metadata: Metadata = {
-  title: 'Marques - Home',
-  description: 'Marques - Home',
-  authors: [{ name: 'Marques' }],
-}
+export const metadata = {
+  title: "Jordi Marqués – Software Engineer",
+  description: "Professional CV and portfolio of Jordi Marqués.",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-      </head>
-      <body suppressHydrationWarning>{children}</body>
+    <html lang="en">
+      <body className="min-h-screen bg-black text-white">
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
-  )
-} 
+  );
+}
+
+
