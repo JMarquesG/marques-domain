@@ -111,20 +111,26 @@ export default function HomePage() {
         <section id="projects" className="py-24 bg-secondary">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary font-medium">Projects</span>
-              <h2 className="text-3xl font-bold mt-2 mb-12">Highlighted Work</h2>
+              <span className="text-primary font-medium">{t("projects")}</span>
+              <h2 className="text-3xl font-bold mt-2 mb-12">{t("projectsSubtitle")}</h2>
 
               <div className="grid grid-cols-1 gap-8">
-                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://mentaestate.com", "_blank")}>
+                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://mentaestate.com", "_blank")}> 
                   <h3 className="text-xl font-semibold mb-2">MentaEstate</h3>
-                  <p className="text-sm text-primary mb-4">Blockchain-enabled real estate platform</p>
-                  <p className="text-gray-300">Full-stack and blockchain contributions across smart-contract integrations and web platform. Focus on secure APIs, on-chain/off-chain orchestration, and performance.</p>
+                  <p className="text-sm text-primary mb-4">{t("mentaEstateTagline")}</p>
+                  <p className="text-gray-300">{t("mentaEstateDescription")}</p>
                 </div>
 
-                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://llista.cat", "_blank")}>
+                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://llista.cat", "_blank")}> 
                   <h3 className="text-xl font-semibold mb-2">llista.cat</h3>
-                  <p className="text-sm text-primary mb-4">Civic participation initiative</p>
-                  <p className="text-gray-300">Participated in engineering efforts around modern web stack, content delivery, and reliability. Emphasis on accessibility and clarity.</p>
+                  <p className="text-sm text-primary mb-4">{t("llistaTagline")}</p>
+                  <p className="text-gray-300">{t("llistaDescription")}</p>
+                </div>
+
+                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://github.com/JMarquesG/bills-app", "_blank")}>
+                  <h3 className="text-xl font-semibold mb-2">Bills App</h3>
+                  <p className="text-sm text-primary mb-4">{t("billsAppTagline")}</p>
+                  <p className="text-gray-300">{t("billsAppDescription")}</p>
                 </div>
               </div>
             </div>

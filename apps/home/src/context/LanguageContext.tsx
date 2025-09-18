@@ -75,6 +75,15 @@ const translations: Translations = {
     aiNlpExpertise: "Hands-on with OpenAI APIs, embeddings, vector search, and productionizing LLM-backed experiences. Focus on quality, latency, and observability.",
     blockchainDescription: "Building blockchain-enabled applications and integrations with smart contracts and secure off-chain orchestration.",
     blockchainExpertise: "Experience across contract interaction, wallet flows, security best practices, and performance optimization for web3 products."
+    ,
+    projectsSubtitle: "Real applications of AI, blockchain, and more",
+    mentaEstateTagline: "Blockchain-enabled real estate platform",
+    mentaEstateDescription: "Full-stack and blockchain contributions across smart-contract integrations and web platform. Focus on secure APIs, on-chain/off-chain orchestration, and performance.",
+    lllistaNote: "",
+    llistaTagline: "Civic participation initiative",
+    llistaDescription: "Participated in engineering efforts around modern web stack, content delivery, and reliability. Emphasis on accessibility and clarity.",
+    billsAppTagline: "AI-powered invoice & expense desktop app (Electron)",
+    billsAppDescription: "Invoice and expense management with intelligent document parsing of receipts/tickets and invoices using AI, plus scheduling and email automation."
   },
   es: {
     home: 'Inicio',
@@ -136,7 +145,14 @@ const translations: Translations = {
     aiNlpDescription: "Diseño e integración de funcionalidades de IA/NLP con OpenAI y herramientas LLM modernas: RAG, pipelines de prompts, evaluación y controles de seguridad.",
     aiNlpExpertise: "Experiencia práctica con APIs de OpenAI, embeddings, búsqueda vectorial y puesta en producción de experiencias con LLMs. Enfoque en calidad, latencia y observabilidad.",
     blockchainDescription: "Construcción de aplicaciones habilitadas por blockchain e integraciones con contratos inteligentes y orquestación off-chain segura.",
-    blockchainExpertise: "Experiencia en interacción con contratos, flujos de wallet, mejores prácticas de seguridad y optimización de rendimiento para productos web3."
+    blockchainExpertise: "Experiencia en interacción con contratos, flujos de wallet, mejores prácticas de seguridad y optimización de rendimiento para productos web3.",
+    projectsSubtitle: "Aplicaciones reales de IA, blockchain y más",
+    mentaEstateTagline: "Plataforma inmobiliaria habilitada por blockchain",
+    mentaEstateDescription: "Contribuciones full-stack y de blockchain en integraciones con contratos inteligentes y plataforma web. Enfoque en APIs seguras, orquestación on-chain/off-chain y rendimiento.",
+    llistaTagline: "Iniciativa de participación cívica",
+    llistaDescription: "Participación en esfuerzos de ingeniería con stack web moderno, entrega de contenido y fiabilidad. Énfasis en accesibilidad y claridad.",
+    billsAppTagline: "App de escritorio para facturas y gastos con IA (Electron)",
+    billsAppDescription: "Gestión de facturas y gastos con extracción inteligente de datos de tickets y facturas mediante IA, además de planificación y automatización de emails."
   },
   ca: {
     home: 'Inici',
@@ -198,7 +214,14 @@ const translations: Translations = {
     aiNlpDescription: "Disseny i integració de funcionalitats d'IA/NLP amb OpenAI i eines LLM modernes: RAG, pipelines de prompts, avaluació i controls de seguretat.",
     aiNlpExpertise: "Experiència pràctica amb APIs d'OpenAI, embeddings, cerca vectorial i posada en producció d'experiències amb LLMs. Enfocament en qualitat, latència i observabilitat.",
     blockchainDescription: "Construcció d'aplicacions habilitades per blockchain i integracions amb contractes intel·ligents i orquestració off-chain segura.",
-    blockchainExpertise: "Experiència en interacció amb contractes, fluxos de wallet, millors pràctiques de seguretat i optimització de rendiment per a productes web3."
+    blockchainExpertise: "Experiència en interacció amb contractes, fluxos de wallet, millors pràctiques de seguretat i optimització de rendiment per a productes web3.",
+    projectsSubtitle: "Aplicacions reals d'IA, blockchain i més",
+    mentaEstateTagline: "Plataforma immobiliària habilitada per blockchain",
+    mentaEstateDescription: "Contribucions full-stack i de blockchain en integracions amb contractes intel·ligents i plataforma web. Enfoc en APIs segures, orquestració on-chain/off-chain i rendiment.",
+    llistaTagline: "Iniciativa de participació cívica",
+    llistaDescription: "Participació en esforços d'enginyeria amb stack web modern, lliurament de contingut i fiabilitat. Èmfasi en accessibilitat i claredat.",
+    billsAppTagline: "Aplicació d'escriptori de factures i despeses amb IA (Electron)",
+    billsAppDescription: "Gestió de factures i despeses amb extracció intel·ligent de dades de tiquets i factures mitjançant IA, a més de planificació i automatització de correus."
   }
 };
 
