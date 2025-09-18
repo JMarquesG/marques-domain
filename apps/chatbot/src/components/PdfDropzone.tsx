@@ -1,0 +1,23 @@
+'use client'
+import { useState } from 'react'
+
+export default function PdfDropzone({ sessionId }:{sessionId:string}){
+  const [uploading, setUploading] = useState(false)
+  return (
+    <div className="border-dashed border rounded-xl p-4">
+      <input
+        type="file" accept="application/pdf"
+        onChange={async (e)=>{
+          const f = e.target.files?.[0]; if(!f) return;
+          setUploading(true)
+          const fd = new FormData(); fd.append('file', f)
+          const res = await fetch(`/api/sessions/${sessionId}/upload`, { method:'POST', body: fd })
+          setUploading(false)
+          if(!res.ok){ alert('Upload failed'); return; }
+        }}
+      />
+      {uploading && <p>Uploading & indexing…</p>}
+    </div>
+  )
+}
+
