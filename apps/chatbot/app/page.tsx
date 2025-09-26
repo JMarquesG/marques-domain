@@ -1,10 +1,14 @@
 import Chat from '@/src/components/Chat'
 import PdfDropzone from '@/src/components/PdfDropzone'
-import { requireVerifiedUser } from '@/src/lib/auth'
+import { getUserOrNull } from '@/src/lib/auth'
 import { supabaseServer } from '@packages/db/src/supabase-server'
+import { redirect } from 'next/navigation'
 
 export default async function Page(){
-  const { user } = await requireVerifiedUser()
+  const { user } = await getUserOrNull()
+  if(!user){
+    return redirect('/signin')  
+  }
   const supa = supabaseServer()
   const { data, error } = await supa.from('sessions').insert({ user_id: user.id }).select('id').single()
   if(error) throw error

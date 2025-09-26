@@ -14,3 +14,15 @@ export async function requireVerifiedUser(){
   return { supabase, user }
 }
 
+export async function getUserOrNull(){
+  const cookieStore = cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { cookies: { get: (k)=>cookieStore.get(k)?.value } }
+  )
+  const { data: { user } } = await supabase.auth.getUser()
+  if(!user || !user.email_confirmed_at) return { supabase, user: null as typeof user | null }
+  return { supabase, user }
+}
+
