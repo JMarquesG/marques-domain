@@ -7,6 +7,8 @@ import ExperienceCard from "@/components/ExperienceCard";
 import ExpertiseCard from "@/components/ExpertiseCard";
 import { Brain, Boxes, Terminal, Users, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -200,6 +202,8 @@ export default function HomePage() {
           </div>
         </footer>
       </main>
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }

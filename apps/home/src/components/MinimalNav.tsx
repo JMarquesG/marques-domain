@@ -8,6 +8,9 @@ const MinimalNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
+  const chatUrl = typeof window !== 'undefined'
+    ? `${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
+    : '#';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +46,9 @@ const MinimalNav: React.FC = () => {
                 {item.label}
               </a>
             ))}
+            <a href={chatUrl} className="apple-button" target="_blank" rel="noreferrer">
+              {t('chat')}
+            </a>
             <LanguageSwitcher />
           </div>
           
@@ -67,6 +73,15 @@ const MinimalNav: React.FC = () => {
                   {item.label}
                 </a>
               ))}
+              <a 
+                href={chatUrl} 
+                className="py-3 text-lg hover:text-primary transition-colors"
+                target="_blank" 
+                rel="noreferrer"
+                onClick={toggleMenu}
+              >
+                {t('chat')}
+              </a>
               <div className="pt-2">
                 <LanguageSwitcher />
               </div>

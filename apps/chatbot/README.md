@@ -32,8 +32,26 @@ pnpm dev
 
 Deploy
 
-- Set env vars in Vercel
-- Link to same Supabase project
-- Enable WebAuthn (Passkeys) + email verification in Supabase Auth
-- Optional: schedule purge for closed sessions
+Monorepo (Vercel) setup
+
+1. Create two Vercel Projects pointing to this repo:
+   - Home: `apps/home` as rootDirectory → primary domain `yourdomain.com`
+   - Chatbot: `apps/chatbot` as rootDirectory → subdomain `chat.yourdomain.com`
+2. Set Environment Variables in the Chatbot project (same values as local):
+   - `OPENAI_API_KEY`
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - Optional price/config vars shown above
+3. Connect both projects to the same Supabase instance (Auth/DB/Storage)
+4. In Supabase Auth, enable email verification (and optionally Passkeys/WebAuthn)
+5. Map domains in Vercel:
+   - Home → `yourdomain.com`
+   - Chatbot → `chat.yourdomain.com`
+6. (Optional) Configure analytics separately for each project
+
+Notes
+
+- If using `packages/ui`, it is already workspace-shared; no extra changes required.
+- Add a CTA/link in the Home app pointing to `https://chat.yourdomain.com` for discovery.
 

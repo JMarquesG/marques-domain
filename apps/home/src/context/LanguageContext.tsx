@@ -84,6 +84,9 @@ const translations: Translations = {
     llistaDescription: "Participated in engineering efforts around modern web stack, content delivery, and reliability. Emphasis on accessibility and clarity.",
     billsAppTagline: "AI-powered invoice & expense desktop app (Electron)",
     billsAppDescription: "Invoice and expense management with intelligent document parsing of receipts/tickets and invoices using AI, plus scheduling and email automation."
+    ,
+    chat: "Chat",
+    tryChat: "Try the Chat"
   },
   es: {
     home: 'Inicio',
@@ -152,7 +155,9 @@ const translations: Translations = {
     llistaTagline: "Iniciativa de participación cívica",
     llistaDescription: "Participación en esfuerzos de ingeniería con stack web moderno, entrega de contenido y fiabilidad. Énfasis en accesibilidad y claridad.",
     billsAppTagline: "App de escritorio para facturas y gastos con IA (Electron)",
-    billsAppDescription: "Gestión de facturas y gastos con extracción inteligente de datos de tickets y facturas mediante IA, además de planificación y automatización de emails."
+    billsAppDescription: "Gestión de facturas y gastos con extracción inteligente de datos de tickets y facturas mediante IA, además de planificación y automatización de emails.",
+    chat: "Chat",
+    tryChat: "Probar el Chat"
   },
   ca: {
     home: 'Inici',
@@ -221,7 +226,9 @@ const translations: Translations = {
     llistaTagline: "Iniciativa de participació cívica",
     llistaDescription: "Participació en esforços d'enginyeria amb stack web modern, lliurament de contingut i fiabilitat. Èmfasi en accessibilitat i claredat.",
     billsAppTagline: "Aplicació d'escriptori de factures i despeses amb IA (Electron)",
-    billsAppDescription: "Gestió de factures i despeses amb extracció intel·ligent de dades de tiquets i factures mitjançant IA, a més de planificació i automatització de correus."
+    billsAppDescription: "Gestió de factures i despeses amb extracció intel·ligent de dades de tiquets i factures mitjançant IA, a més de planificació i automatització de correus.",
+    chat: "Xat",
+    tryChat: "Prova el Xat"
   }
 };
 

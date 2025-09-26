@@ -3,6 +3,8 @@ import PdfDropzone from '@/src/components/PdfDropzone'
 import { getUserOrNull } from '@/src/lib/auth'
 import { supabaseServer } from '@packages/db/src/supabase-server'
 import { redirect } from 'next/navigation'
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default async function Page(){
   const { user } = await getUserOrNull()
@@ -21,6 +23,8 @@ export default async function Page(){
       <form action={`/api/sessions/${data.id}/end`} method="post">
         <button className="text-red-600">End session (deletes all chat & files)</button>
       </form>
+      <Analytics />
+      <SpeedInsights />
     </main>
   )
 }

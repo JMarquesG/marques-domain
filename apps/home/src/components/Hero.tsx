@@ -5,6 +5,9 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
+  const chatUrl = typeof window !== 'undefined'
+    ? `${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
+    : '#';
 
   return (
     <section className="relative min-h-screen flex items-center bg-black">
@@ -19,12 +22,21 @@ const Hero: React.FC = () => {
             {t('designAndCode')}
           </p>
           
-          <div className="pt-8">
+          <div className="pt-8 flex gap-4">
             <a 
               href="#about" 
               className="button-primary inline-flex items-center"
             >
               <span>{t('viewMyWork')}</span>
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <a 
+              href={chatUrl} 
+              className="button-accent inline-flex items-center"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>{t('tryChat')}</span>
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </div>
