@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabaseBrowser } from '@packages/db/src/supabase-browser'
 
+
 export default function SignInPage(){
   return (
     <Suspense fallback={<main className="max-w-md mx-auto p-6">Loading…</main>}>

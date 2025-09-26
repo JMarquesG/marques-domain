@@ -1,3 +1,5 @@
+'use client'
+
 import Chat from '@/src/components/Chat'
 import PdfDropzone from '@/src/components/PdfDropzone'
 import { getUserOrNull } from '@/src/lib/auth'
