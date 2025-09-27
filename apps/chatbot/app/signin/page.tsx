@@ -1,105 +1,83 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { supabaseBrowser } from '@packages/db/src/supabase-browser'
+import { useEffect, useState } from 'react'
+import { createClient } from '../../utils/supabase/client'
+import { useRouter } from 'next/navigation'
 
-
-export default function SignInPage(){
-  return (
-    <Suspense fallback={<main className="max-w-md mx-auto p-6">Loading…</main>}>
-      <SignInContent />
-    </Suspense>
-  )
-}
-
-function SignInContent(){
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const supabase = supabaseBrowser()
+export default function SignInPage() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState<string | null>(null)
+  const [message, setMessage] = useState('')
+  const router = useRouter()
+  const supabase = createClient()
 
-  useEffect(() => {
-    const code = searchParams.get('code')
-    const tokenHash = searchParams.get('token_hash')
-    const typeParam = searchParams.get('type')
-    const err = searchParams.get('error_description') || searchParams.get('error')
-    if (err) setMessage(decodeURIComponent(err.replace(/\+/g, ' ')))
-
-    // Handle OAuth PKCE callback
-    if (code) {
-      supabase.auth.exchangeCodeForSession(window.location.href)
-        .then(({ error }) => {
-          if (error) {
-            const msg = error.message || ''
-            if (/code[_ ]?verifier/i.test(msg)) {
-              setMessage('This link can\'t be verified here. Open it in the same browser where you requested it, or request a new magic link below.')
-            } else {
-              setMessage(msg)
-            }
-            return
-          }
-          router.replace('/')
-        })
-    }
-
-    // Handle magic link / email OTP callback
-    if (tokenHash) {
-      const type = (typeParam === 'recovery') ? 'recovery' : (typeParam || 'magiclink')
-      // @ts-expect-error: type union is broader at runtime
-      supabase.auth.verifyOtp({ type, token_hash: tokenHash })
-        .then(({ error }) => {
-          if (error) {
-            setMessage(error.message)
-            return
-          }
-          router.replace('/')
-        })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/signin` : undefined
-
-  async function sendMagicLink(e: React.FormEvent){
+  async function handleSignIn(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    setMessage(null)
+    setMessage('')
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: redirectTo, shouldCreateUser: true }
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      }
     })
-    if (error) setMessage(error.message)
-    else setMessage('Check your email for the magic link.')
+    console.log('error', error)
+    if (error) {
+      setMessage(error.message)
+    } else {
+      setMessage('Check your email for the magic link!')
+    }
+    
     setLoading(false)
   }
 
+  // Check if already logged in and avoid duplicate subscriptions
+  useEffect(() => {
+    let isMounted = true
+    supabase.auth.getUser().then(({ data }) => {
+      if (!isMounted) return
+      if (data.user) router.push('/')
+    })
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+      if (session) router.push('/')
+    })
+
+    return () => {
+      isMounted = false
+      listener.subscription.unsubscribe()
+    }
+  }, [router, supabase])
+
   return (
-    <main className="max-w-md mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Sign in</h1>
+    <main className="max-w-md mx-auto p-6 mt-20">
+      <h1 className="text-2xl font-bold mb-6">Sign In</h1>
+      
       {message && (
-        <div className="text-sm text-red-600">{message}</div>
+        <div className="mb-4 p-3 rounded text-sm">
+          {message}
+        </div>
       )}
-      <form className="space-y-3" onSubmit={sendMagicLink}>
+      
+      <form onSubmit={handleSignIn}>
         <input
           type="email"
-          className="w-full rounded-md border px-3 py-2"
-          placeholder="you@example.com"
+          placeholder="Your email"
           value={email}
-          onChange={(e)=>setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-2 border rounded mb-4"
           required
         />
-        <button className="w-full rounded-md bg-blue-600 text-white py-2 disabled:opacity-50" disabled={loading}>
-          Send magic link
+        
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full p-2 bg-blue-500 text-white rounded disabled:opacity-50"
+        >
+          {loading ? 'Sending...' : 'Send Magic Link'}
         </button>
       </form>
-      <p className="text-sm text-muted-foreground">
-        After signing in, you will be redirected back here.
-      </p>
     </main>
   )
 }
-
-

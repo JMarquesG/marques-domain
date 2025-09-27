@@ -1,10 +1,11 @@
 import { NextRequest } from 'next/server'
-import { requireVerifiedUser } from '@/src/lib/auth'
+import { getUser } from '@/src/lib/auth'
 import { supabaseServer } from '@packages/db/src/supabase-server'
-import { streamText } from 'ai'
+import { streamText, tool } from 'ai'
 import { openai as aiOpenAI } from '@ai-sdk/openai'
 import OpenAI from 'openai'
 import { topK } from '@/src/lib/rag'
+import { z } from 'zod'
 
 export const runtime = 'nodejs'
 
@@ -20,26 +21,40 @@ async function checkBudgetOrThrow(supa: ReturnType<typeof supabaseServer>, userI
 }
 
 export async function POST(req: NextRequest){
-  const { user } = await requireVerifiedUser()
+  const user = await getUser()
   const supa = supabaseServer()
-  await checkBudgetOrThrow(supa, user.id)
+  await checkBudgetOrThrow(supa, user!.id)
 
   const { sessionId, message } = await req.json() as { sessionId: string; message: string }
   const { data: session } = await supa.from('sessions').select('id, user_id, alive').eq('id', sessionId).single()
-  if (!session || session.user_id !== user.id || !session.alive) throw new Response('Invalid session', { status: 404 })
+  if (!session || session.user_id !== user!.id || !session.alive) throw new Response('Invalid session', { status: 404 })
 
-  const emb = await getOpenAI().embeddings.create({ model: 'text-embed-small', input: message })
-  const contexts = await topK(sessionId, emb.data[0].embedding as any, 8)
-  const contextText = contexts.map(c => c.content).join('\n---\n')
-
-  const system = `You answer user questions strictly from the provided CONTEXT.
-If the answer is not in CONTEXT, say you don't know.
-Keep answers concise and cite page ranges when available.
-CONTEXT:
-${contextText}`
+  const system = `You are a helpful assistant for answering questions about uploaded PDFs.
+You may use the "rag" tool to retrieve relevant passages if needed. Only use it when the user's question requires information from the PDFs.
+When citing sources, prefer the format [source](page) or [source](pageStart-pageEnd). Keep answers concise.`
 
   // store user message immediately
   await supa.from('session_messages').insert({ session_id: sessionId, role: 'user', content: message })
+
+  const rag = tool({
+    description: 'Retrieve the most relevant PDF chunks from the current session to ground your answer',
+    parameters: z.object({
+      query: z.string().describe('The semantic query to search for in the user\'s PDFs'),
+      k: z.number().int().min(1).max(12).optional().default(8)
+    }),
+    execute: async ({ query, k }) => {
+      const emb = await getOpenAI().embeddings.create({ model: 'text-embedding-3-small', input: query })
+      const contexts = await topK(sessionId, emb.data[0].embedding as any, k)
+      // Return compact context with page hints for citation
+      const items = contexts.map((c) => ({
+        content: c.content,
+        pageFrom: c.pageFrom ?? null,
+        pageTo: c.pageTo ?? null,
+        docId: c.docId ?? null,
+      }))
+      return { contexts: items }
+    }
+  })
 
   const result = await streamText({
     model: aiOpenAI('gpt-5-mini'),
@@ -47,8 +62,10 @@ ${contextText}`
       { role: 'system', content: system },
       { role: 'user', content: message }
     ],
+    tools: { rag },
+    toolChoice: 'auto'
   })
 
-  return result.toAIStreamResponse()
+  return result.toDataStreamResponse()
 }
 

@@ -14,6 +14,13 @@ const nextConfig = {
     CHAT_COST_CEIL_USD: process.env.CHAT_COST_CEIL_USD,
     MAX_UPLOAD_PAGES: process.env.MAX_UPLOAD_PAGES,
     EMBED_DIM: process.env.EMBED_DIM
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = config.externals || []
+      config.externals.push('pdf-parse')
+    }
+    return config
   }
 }
 

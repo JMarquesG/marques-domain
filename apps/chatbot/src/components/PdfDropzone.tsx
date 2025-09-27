@@ -5,6 +5,7 @@ export default function PdfDropzone({ sessionId }:{sessionId:string}){
   const [uploading, setUploading] = useState(false)
   return (
     <div className="border-dashed border rounded-xl p-4">
+      <div className="text-sm mb-2">Upload a PDF to ground the chat</div>
       <input
         type="file" accept="application/pdf"
         onChange={async (e)=>{

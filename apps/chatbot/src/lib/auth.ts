@@ -1,28 +1,7 @@
-import { cookies } from 'next/headers'
-import { createServerClient } from '@supabase/ssr'
+import { createClient } from '../../utils/supabase/server'
 
-export async function requireVerifiedUser(){
-  const cookieStore = cookies()
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies: { get: (k)=>cookieStore.get(k)?.value } }
-  )
+export async function getUser() {
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if(!user) throw new Response('Unauthorized', { status: 401 })
-  if(!user.email_confirmed_at) throw new Response('Email not verified', { status: 403 })
-  return { supabase, user }
+  return user
 }
-
-export async function getUserOrNull(){
-  const cookieStore = cookies()
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies: { get: (k)=>cookieStore.get(k)?.value } }
-  )
-  const { data: { user } } = await supabase.auth.getUser()
-  if(!user || !user.email_confirmed_at) return { supabase, user: null as typeof user | null }
-  return { supabase, user }
-}
-
