@@ -3,265 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Access Link</title>
+    <title>Magic Link</title>
     <style>
-        /* Reset styles */
-        body, table, td, p, a, li, blockquote {
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-        table, td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        /* Base styles */
         body {
             margin: 0;
-            padding: 0;
-            width: 100% !important;
-            min-width: 100%;
-            background-color: #f4f4f4;
+            padding: 24px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333333;
-        }
-
-        /* Container */
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
             background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 30px;
-            text-align: center;
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
         }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffffff;
-            text-decoration: none;
-            margin-bottom: 10px;
-            display: inline-block;
+        h2 {
+            margin: 0 0 16px 0;
+            font-size: 20px;
         }
-
-        .header-subtitle {
-            color: #e8eaff;
+        p {
+            margin: 0 0 12px 0;
             font-size: 16px;
-            margin: 0;
         }
-
-        /* Content */
-        .content {
-            padding: 40px 30px;
-        }
-
-        .greeting {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333333;
-            margin-bottom: 20px;
-        }
-
-        .message {
-            font-size: 16px;
-            color: #666666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        /* Button */
-        .button-container {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .magic-button {
-            display: inline-block;
-            padding: 16px 32px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff !important;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .magic-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
-        }
-
-        /* Security notice */
-        .security-notice {
-            background-color: #f8f9ff;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .security-notice h3 {
-            margin: 0 0 10px 0;
-            color: #333333;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .security-notice p {
-            margin: 0;
-            color: #666666;
-            font-size: 14px;
-        }
-
-        /* Expiry info */
-        .expiry-info {
-            background-color: #fff8e1;
-            border: 1px solid #ffd54f;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .expiry-info p {
-            margin: 0;
-            color: #f57f17;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .footer p {
-            margin: 0 0 10px 0;
-            color: #666666;
-            font-size: 14px;
-        }
-
-        .footer a {
-            color: #667eea;
+        a {
+            color: #1a73e8;
             text-decoration: none;
         }
-
-        .footer a:hover {
+        a:hover {
             text-decoration: underline;
         }
-
-        /* Responsive */
-        @media only screen and (max-width: 600px) {
-            .email-container {
-                width: 100% !important;
-                margin: 0;
-                border-radius: 0;
-            }
-            
-            .header, .content, .footer {
-                padding: 20px !important;
-            }
-            
-            .magic-button {
-                padding: 14px 24px;
-                font-size: 14px;
-            }
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 24px 0;
         }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .email-container {
-                background-color: #1a1a1a !important;
-            }
-            
-            .content {
-                color: #e0e0e0 !important;
-            }
-            
-            .greeting {
-                color: #ffffff !important;
-            }
-            
-            .message {
-                color: #cccccc !important;
-            }
-            
-            .footer {
-                background-color: #2a2a2a !important;
-                border-top-color: #444444 !important;
-            }
+        .footer p {
+            font-size: 14px;
+            color: #666666;
+            margin: 0 0 6px 0;
         }
     </style>
+    
 </head>
 <body>
-    <div class="email-container">
-        <!-- Header -->
-        <div class="header">
-            <a href="{{COMPANY_URL}}" class="logo">{{COMPANY_NAME}}</a>
-            <p class="header-subtitle">Secure Access Portal</p>
-        </div>
+    <div class="container">
+        <h2>Magic Link</h2>
+        <p>Follow this link to login:</p>
+        <p><a href="{{ .ConfirmationURL }}">Log In</a></p>
 
-        <!-- Content -->
-        <div class="content">
-            <div class="greeting">
-                Hello {{USER_NAME}},
-            </div>
-
-            <div class="message">
-                You've requested secure access to your {{COMPANY_NAME}} account. Click the button below to sign in instantly and securely.
-            </div>
-
-            <div class="button-container">
-                <a href="{{MAGIC_LINK_URL}}" class="magic-button">
-                    Access Your Account
-                </a>
-            </div>
-
-            <div class="expiry-info">
-                <p>⏰ This link expires in {{EXPIRY_TIME}} for your security</p>
-            </div>
-
-            <div class="security-notice">
-                <h3>🔒 Security Notice</h3>
-                <p>This link is unique to your account and can only be used once. If you didn't request this link, please ignore this email or contact our support team.</p>
-            </div>
-
-            <div class="message">
-                If the button doesn't work, you can copy and paste this link into your browser:
-                <br><br>
-                <a href="{{MAGIC_LINK_URL}}" style="color: #667eea; word-break: break-all;">{{MAGIC_LINK_URL}}</a>
-            </div>
-        </div>
-
-        <!-- Footer -->
+        <hr>
         <div class="footer">
-            <p><strong>{{COMPANY_NAME}}</strong></p>
-            <p>{{COMPANY_ADDRESS}}</p>
-            <p>
-                <a href="{{COMPANY_URL}}">Visit our website</a> | 
-                <a href="{{SUPPORT_URL}}">Contact Support</a> | 
-                <a href="{{UNSUBSCRIBE_URL}}">Unsubscribe</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 12px; color: #999999;">
-                This email was sent to {{USER_EMAIL}}. If you believe you received this email in error, please contact our support team.
-            </p>
+            <p><strong>Jordi Marques</strong></p>
+            <p><a href="https://www.marques.ad">https://www.marques.ad</a></p>
+            <p>Escaldes-Engordany, Andorra</p>
         </div>
     </div>
 </body>
