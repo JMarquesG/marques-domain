@@ -8,9 +8,7 @@ const MinimalNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
-  const chatUrl = typeof window !== 'undefined'
-    ? `${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
-    : '#';
+  const chatUrl =`${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
 
   useEffect(() => {
     const handleScroll = () => {
