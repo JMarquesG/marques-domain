@@ -5,9 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
-  const chatUrl = typeof window !== 'undefined'
-    ? `${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
-    : '#';
+  const chatUrl = process.env.NEXT_PUBLIC_CHAT_URL || '#';
 
   return (
     <section className="relative min-h-screen flex items-center bg-black">
