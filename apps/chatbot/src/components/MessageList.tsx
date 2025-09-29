@@ -43,9 +43,9 @@ function MessageBubble({ role, content, toolLogs }: { role: 'user'|'assistant'; 
           className="whitespace-pre-wrap text-black"
           dangerouslySetInnerHTML={{ __html: contentWithLinks }}
           onClick={(e)=>{
-            const target = e.target as HTMLElement
-            const pageStr = target.getAttribute('data-page')
-            if(pageStr){ e.preventDefault(); setPdfPage(parseInt(pageStr,10)); }
+            const el = (e.target as HTMLElement).closest('a[data-page]') as HTMLAnchorElement | null
+            const pageStr = el?.getAttribute('data-page')
+            if (pageStr) { e.preventDefault(); setPdfPage(parseInt(pageStr, 10)); }
           }}
         />
       )}

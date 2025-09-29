@@ -102,6 +102,8 @@ When asked about PDF content:
 2. Analyze the retrieved context
 3. Provide a comprehensive answer based on the context
 4. Include source citations in format [source](page)
+5. Answer in the same language as the question.
+6. Be concise and to the point.
 
 ${
   hasDocuments
