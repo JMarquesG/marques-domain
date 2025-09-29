@@ -34,6 +34,9 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   const up = await storage.upload(path, buf, { contentType: (file as any).type || 'application/pdf' })
   if (up.error) return NextResponse.json({ error: up.error.message }, { status: 500 })
 
+  // Create a short-lived signed URL for client-side viewing
+  const signed = await storage.createSignedUrl(path, 60 * 60)
+
   const { data: doc, error: docErr } = await supa.from('session_docs')
     .insert({ session_id: params.id, filename: file.name, storage_path: path, pages: parsed.numpages })
     .select('id').single()
@@ -45,6 +48,6 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   const embedUSD = dollarsFromTokens('embed-in', embedTokens)
   await supa.rpc('bump_usage', { p_user: user!.id, p_in: 0, p_out: 0, p_emb: embedTokens, p_usd: embedUSD })
 
-  return NextResponse.json({ ok: true, docId: doc.id, chunks: chunks.length })
+  return NextResponse.json({ ok: true, docId: doc.id, chunks: chunks.length, viewerUrl: signed.data?.signedUrl })
 }
 

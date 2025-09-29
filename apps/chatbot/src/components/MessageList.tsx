@@ -22,18 +22,33 @@ function MessageBubble({ role, content, toolLogs }: { role: 'user'|'assistant'; 
     return `<a href="#" data-page="${page}" class="underline">[source](${page})</a>`
   })
 
+  const isLoading = role === 'assistant' && !content && (!toolLogs || toolLogs.length === 0)
+  const hasToolsRunning = role === 'assistant' && toolLogs && toolLogs.length > 0 && !content
+
   return (
     <div className={`p-3 rounded-xl ${role==='user'?'bg-gray-100':'bg-white border'} text-black`}>
       <div className="text-xs opacity-60 text-black">{role}</div>
-      <div
-        className="whitespace-pre-wrap text-black"
-        dangerouslySetInnerHTML={{ __html: contentWithLinks }}
-        onClick={(e)=>{
-          const target = e.target as HTMLElement
-          const pageStr = target.getAttribute('data-page')
-          if(pageStr){ e.preventDefault(); setPdfPage(parseInt(pageStr,10)); }
-        }}
-      />
+      {isLoading ? (
+        <div className="flex items-center gap-2 text-gray-500">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500"></div>
+          <span>Thinking...</span>
+        </div>
+      ) : hasToolsRunning ? (
+        <div className="flex items-center gap-2 text-gray-500">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500"></div>
+          <span>Searching documents...</span>
+        </div>
+      ) : (
+        <div
+          className="whitespace-pre-wrap text-black"
+          dangerouslySetInnerHTML={{ __html: contentWithLinks }}
+          onClick={(e)=>{
+            const target = e.target as HTMLElement
+            const pageStr = target.getAttribute('data-page')
+            if(pageStr){ e.preventDefault(); setPdfPage(parseInt(pageStr,10)); }
+          }}
+        />
+      )}
       {!!toolLogs?.length && (
         <div className="mt-2">
           <button onClick={()=>setOpen(v=>!v)} className="text-xs underline">{open? 'Hide':'Show'} tool activity</button>

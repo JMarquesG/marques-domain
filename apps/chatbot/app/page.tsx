@@ -28,13 +28,13 @@ export default async function Page() {
 
   return (
     <>
-      <main className="mx-auto p-4 text-white max-w-7xl">
-        <div className="mb-4">
+      <main className="mx-auto p-4 text-white max-w-7xl h-screen flex flex-col">
+        <div className="mb-4 shrink-0">
           <h1 className="text-2xl font-semibold">Chat with your PDF</h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 min-h-[70vh]">
-          <div className="flex flex-col gap-4">
-            <PdfDropzone sessionId={session.id} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-0">
+          <div className="flex flex-col gap-4 min-h-0">
+            <div className="shrink-0"><PdfDropzone sessionId={session.id} /></div>
             <div className="flex-1 min-h-0"><Chat sessionId={session.id} /></div>
           </div>
           <div className="min-h-0"><PdfViewer sessionId={session.id} /></div>
