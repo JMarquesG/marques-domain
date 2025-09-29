@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -8,7 +7,7 @@ const MinimalNav: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
-  const chatUrl =`${window.location.protocol}//chat.${window.location.hostname.replace(/^www\./, '')}`
+  const chatUrl = process.env.NEXT_PUBLIC_CHAT_URL || '#';
 
   useEffect(() => {
     const handleScroll = () => {
