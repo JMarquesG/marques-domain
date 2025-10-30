@@ -27,15 +27,11 @@ const About: React.FC = () => {
                 <ul className="space-y-4">
                   <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('name')}:</span>
-                    <span>Jordi Marqués Godó</span>
+                    <span>Jordi Marqués</span>
                   </li>
                   <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('email')}:</span>
                     <span>jordimarquesgodo@gmail.com</span>
-                  </li>
-                  <li className="flex border-b border-gray-800 pb-3">
-                    <span className="w-32 text-gray-500">{t('location')}:</span>
-                    <span>Andorra</span>
                   </li>
                 </ul>
               </div>
