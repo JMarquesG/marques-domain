@@ -29,10 +29,6 @@ const About: React.FC = () => {
                     <span className="w-32 text-gray-500">{t('name')}:</span>
                     <span>Jordi Marqués</span>
                   </li>
-                  <li className="flex border-b border-gray-800 pb-3">
-                    <span className="w-32 text-gray-500">{t('email')}:</span>
-                    <span>jordimarquesgodo@gmail.com</span>
-                  </li>
                 </ul>
               </div>
               
