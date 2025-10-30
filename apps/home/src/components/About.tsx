@@ -30,10 +30,6 @@ const About: React.FC = () => {
                     <span>Jordi Marqués Godó</span>
                   </li>
                   <li className="flex border-b border-gray-800 pb-3">
-                    <span className="w-32 text-gray-500">{t('phone')}:</span>
-                    <span>+34 638772122</span>
-                  </li>
-                  <li className="flex border-b border-gray-800 pb-3">
                     <span className="w-32 text-gray-500">{t('email')}:</span>
                     <span>jordimarquesgodo@gmail.com</span>
                   </li>
