@@ -7,8 +7,8 @@ import ExperienceCard from "@/components/ExperienceCard";
 import ExpertiseCard from "@/components/ExpertiseCard";
 import { Brain, Boxes, Terminal, Users, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -27,10 +27,12 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <span className="text-primary font-medium">{t("resume")}</span>
-              <h2 className="text-3xl font-bold mt-2 mb-12">{t("experience")}</h2>
+              <h2 className="text-3xl font-bold mt-2 mb-12">
+                {t("experience")}
+              </h2>
 
               <div className="relative">
-                <ExperienceCard 
+                <ExperienceCard
                   title="Full-Stack / Tech Lead"
                   company="Omnios"
                   position="Full-Stack / Tech Lead"
@@ -38,7 +40,7 @@ export default function HomePage() {
                   description="Led core products from inception with Node.js and Python, heavy data scraping and processing, AI integrations, and robust infra/data architecture. Owned documentation and mentored teammates. Scrum-driven delivery."
                 />
 
-                <ExperienceCard 
+                <ExperienceCard
                   title="Full-Stack Developer"
                   company="SinzerAD"
                   position="Full-Stack Developer"
@@ -46,7 +48,7 @@ export default function HomePage() {
                   description="Delivered applications across varied infrastructures (Python/Node.js). Strong requirements engineering translating needs into concrete milestones. End-to-end contributor across lifecycle."
                 />
 
-                <ExperienceCard 
+                <ExperienceCard
                   title="Junior Software Developer"
                   company="Sopra Steria"
                   position="Junior Software Developer"
@@ -54,7 +56,7 @@ export default function HomePage() {
                   description="Grew in Scrum practices and backend craft with exposure to agile collaboration and modern engineering workflows."
                 />
 
-                <ExperienceCard 
+                <ExperienceCard
                   title="Junior Software Developer"
                   company="Bekodo"
                   position="Junior Software Developer"
@@ -70,11 +72,15 @@ export default function HomePage() {
         <section id="expertise" className="py-24 bg-black">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary font-medium">{t("technicalExpertise")}</span>
-              <h2 className="text-3xl font-bold mt-2 mb-12">{t("coreCompetencies")}</h2>
+              <span className="text-primary font-medium">
+                {t("technicalExpertise")}
+              </span>
+              <h2 className="text-3xl font-bold mt-2 mb-12">
+                {t("coreCompetencies")}
+              </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <ExpertiseCard 
+                <ExpertiseCard
                   title={t("backendDevelopment")}
                   description={t("backendDevDescription")}
                   icon={<Terminal size={28} />}
@@ -82,7 +88,7 @@ export default function HomePage() {
                   modalDescriptionKey="backendDevExpertise"
                 />
 
-                <ExpertiseCard 
+                <ExpertiseCard
                   title={t("aiNlp")}
                   description={t("aiNlpDescription")}
                   icon={<Brain size={28} />}
@@ -90,7 +96,7 @@ export default function HomePage() {
                   modalDescriptionKey="aiNlpExpertise"
                 />
 
-                <ExpertiseCard 
+                <ExpertiseCard
                   title={t("blockchain")}
                   description={t("blockchainDescription")}
                   icon={<Boxes size={28} />}
@@ -98,7 +104,7 @@ export default function HomePage() {
                   modalDescriptionKey="blockchainExpertise"
                 />
 
-                <ExpertiseCard 
+                <ExpertiseCard
                   title={t("technicalLeadership")}
                   description={t("techLeadershipDescription")}
                   icon={<Users size={28} />}
@@ -114,24 +120,48 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <span className="text-primary font-medium">{t("projects")}</span>
-              <h2 className="text-3xl font-bold mt-2 mb-12">{t("projectsSubtitle")}</h2>
+              <h2 className="text-3xl font-bold mt-2 mb-12">
+                {t("projectsSubtitle")}
+              </h2>
 
               <div className="grid grid-cols-1 gap-8">
-                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://mentaestate.com", "_blank")}> 
+                <div
+                  className="glass-card p-8 hover-lift"
+                  onClick={() =>
+                    window.open("https://mentaestate.com", "_blank")
+                  }
+                >
                   <h3 className="text-xl font-semibold mb-2">MentaEstate</h3>
-                  <p className="text-sm text-primary mb-4">{t("mentaEstateTagline")}</p>
+                  <p className="text-sm text-primary mb-4">
+                    {t("mentaEstateTagline")}
+                  </p>
                   <p className="text-gray-300">{t("mentaEstateDescription")}</p>
                 </div>
 
-                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://llista.cat", "_blank")}> 
+                <div
+                  className="glass-card p-8 hover-lift"
+                  onClick={() => window.open("https://llista.cat", "_blank")}
+                >
                   <h3 className="text-xl font-semibold mb-2">llista.cat</h3>
-                  <p className="text-sm text-primary mb-4">{t("llistaTagline")}</p>
+                  <p className="text-sm text-primary mb-4">
+                    {t("llistaTagline")}
+                  </p>
                   <p className="text-gray-300">{t("llistaDescription")}</p>
                 </div>
 
-                <div className="glass-card p-8 hover-lift" onClick={() => window.open("https://github.com/JMarquesG/bills-app", "_blank")}>
+                <div
+                  className="glass-card p-8 hover-lift"
+                  onClick={() =>
+                    window.open(
+                      "https://github.com/JMarquesG/bills-app",
+                      "_blank"
+                    )
+                  }
+                >
                   <h3 className="text-xl font-semibold mb-2">Bills App</h3>
-                  <p className="text-sm text-primary mb-4">{t("billsAppTagline")}</p>
+                  <p className="text-sm text-primary mb-4">
+                    {t("billsAppTagline")}
+                  </p>
                   <p className="text-gray-300">{t("billsAppDescription")}</p>
                 </div>
               </div>
@@ -143,21 +173,42 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <span className="text-primary font-medium">{t("contact")}</span>
-              <h2 className="text-3xl font-bold mt-2 mb-12">{t("getInTouch")}</h2>
+              <h2 className="text-3xl font-bold mt-2 mb-12">
+                {t("getInTouch")}
+              </h2>
 
               <div className="glass-card p-8">
                 <div className="gap-12">
                   <div>
-                    <h3 className="text-xl font-semibold mb-6">{t("letConnect")}</h3>
-                    <p className="text-gray-400 mb-8">{t("connectDescription")}</p>
+                    <h3 className="text-xl font-semibold mb-6">
+                      {t("letConnect")}
+                    </h3>
+                    <p className="text-gray-400 mb-8">
+                      {t("connectDescription")}
+                    </p>
 
                     <div className="space-y-6">
-
                       <div className="flex items-start">
                         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-muted text-primary mr-4">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            />
                           </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-medium">{t("email")}</h4>
+                          <p className="text-gray-400">
+                            jordimarquesgodo@gmail.com
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -170,7 +221,10 @@ export default function HomePage() {
 
         <footer className="py-10 bg-black border-t border-muted">
           <div className="container mx-auto px-6 text-center">
-            <p className="text-gray-500">© {new Date().getFullYear()} Jordi Marqués. {t("allRightsReserved")}</p>
+            <p className="text-gray-500">
+              © {new Date().getFullYear()} Jordi Marqués.{" "}
+              {t("allRightsReserved")}
+            </p>
           </div>
         </footer>
       </main>
@@ -179,5 +233,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
